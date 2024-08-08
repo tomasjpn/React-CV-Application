@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import GeneralInfo from "./components/GeneralInfo";
 import Preview from "./components/Preview";
+import SchoolInfo from "./components/SchoolInfo";
 
 function App() {
   // useState für GeneralInfo
@@ -16,6 +17,11 @@ function App() {
     city: "",
   });
 
+  const [schoolInfo, setSchoolInfo] = useState({
+    schoolname: "",
+    schooldegree: "",
+  });
+
   return (
     <div className="App">
       <h1>CV Application</h1>
@@ -24,14 +30,7 @@ function App() {
           <GeneralInfo setGeneralInfo={setGeneralInfo} />
         </section>
         <section>
-          <h2>Schulischer Abschluss</h2>
-          <button type="button" className="accordion-button">
-            Schulischer Abschluss
-          </button>
-          <div className="SchoolEd">
-            <button type="button">Schulischer Abschluss</button>
-            <input placeholder="Name der Schule" name="schoolName" />
-          </div>
+          <SchoolInfo setSchoolInfo={setSchoolInfo} />
         </section>
         <section>
           <h2>Berufliche Erfahrung</h2>
@@ -50,7 +49,7 @@ function App() {
         </section>
         <button type="submit">Absenden</button>
       </form>
-      <Preview generalInfo={generalInfo} />
+      <Preview generalInfo={generalInfo} schoolInfo={schoolInfo} />
     </div>
   );
 }
