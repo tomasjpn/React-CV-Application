@@ -9,9 +9,9 @@ function SchoolInfo({ setSchoolInfo }) {
 
   // Kategorie Liste
   const [categories, setCategories] = useState([
-    "Hauptschule",
-    "Realschule",
-    "Gymnasium",
+    "Hauptschulabschluss",
+    "Mittlere Reife  ",
+    "Allgemeine Hochschulreife",
   ]);
 
   // Toggle für das InputFeld bei neuer Kategorie
@@ -32,7 +32,7 @@ function SchoolInfo({ setSchoolInfo }) {
       setCategories([...categories, newCategory]); // Die alten Kategorien + die Neue
       setSchoolDegree(newCategory); // das Schooldegree wird mit der neuen Kategorie aktualisiert
       setNewCategory(""); // InputFeld wird zurückgesetzt
-      setShowNewCategoryInput(false); // Versteckt as InputFeld
+      setShowNewCategoryInput(false); // Versteckt das InputFeld
     }
   }
 
@@ -98,7 +98,7 @@ function SchoolInfo({ setSchoolInfo }) {
                 value={newCategory}
                 onChange={(e) => setNewCategory(e.target.value)}
               />
-              <button type="submit">Bestätigen</button>
+              <button onClick={handleNewCategory}>Bestätigen</button>
             </form>
           )}
         </div>
