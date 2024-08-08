@@ -71,7 +71,6 @@ function GeneralInfo({ setGeneralInfo }) {
 
   return (
     <>
-      <h2>Allgemeine Informationen</h2>
       <button
         type="button"
         className="accordion-button"

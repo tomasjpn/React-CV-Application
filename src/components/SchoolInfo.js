@@ -56,7 +56,6 @@ function SchoolInfo({ setSchoolInfo }) {
 
   return (
     <>
-      <h2>Bildungsabschluss</h2>
       <button
         type="button"
         className="accordion-button"

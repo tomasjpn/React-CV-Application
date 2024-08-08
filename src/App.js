@@ -3,6 +3,7 @@ import "./App.css";
 import GeneralInfo from "./components/GeneralInfo";
 import Preview from "./components/Preview";
 import SchoolInfo from "./components/SchoolInfo";
+import WorkInfo from "./components/WorkInfo";
 
 function App() {
   // useState für GeneralInfo
@@ -22,6 +23,14 @@ function App() {
     schooldegree: "",
   });
 
+  const [jobInfo, setJobInfo] = useState({
+    companyName: "",
+    jobTitle: "",
+    workDateFrom: "",
+    workDateto: "",
+    jobDesc: "",
+  });
+
   return (
     <div className="App">
       <h1>CV Application</h1>
@@ -33,23 +42,15 @@ function App() {
           <SchoolInfo setSchoolInfo={setSchoolInfo} />
         </section>
         <section>
-          <h2>Berufliche Erfahrung</h2>
-          <button type="button" className="accordion-button">
-            Berufliche Erfahrung
-          </button>
-          <div className="WorkEx">
-            <button type="button">Beruf</button>
-            <input placeholder="Unternehmen" name="companyName" />
-            <input placeholder="Position/Aufgabenbereich" name="jobTitle" />
-            <label htmlFor="workDateFrom">von:</label>
-            <input type="date" id="workDateFrom" name="workDateFrom" />
-            <label htmlFor="workDateTo">bis:</label>
-            <input type="date" id="workDateTo" name="workDateTo" />
-          </div>
+          <WorkInfo setJobInfo={setJobInfo} />
         </section>
         <button type="submit">Absenden</button>
       </form>
-      <Preview generalInfo={generalInfo} schoolInfo={schoolInfo} />
+      <Preview
+        generalInfo={generalInfo}
+        schoolInfo={schoolInfo}
+        jobInfo={jobInfo}
+      />
     </div>
   );
 }

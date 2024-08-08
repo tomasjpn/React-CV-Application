@@ -1,5 +1,5 @@
 // Vorschau des CV
-function Preview({ generalInfo, schoolInfo }) {
+function Preview({ generalInfo, schoolInfo, jobInfo }) {
   console.log(generalInfo.image);
   return (
     <div className="CVPreview">
@@ -21,6 +21,9 @@ function Preview({ generalInfo, schoolInfo }) {
       <section>
         <p>Name der Bildungsinstitution: {schoolInfo.schoolname}</p>
         <p>Abschluss: {schoolInfo.schooldegree}</p>
+      </section>
+      <section>
+        <p>Unternehmen: {jobInfo.companyName}</p>
       </section>
     </div>
   );
