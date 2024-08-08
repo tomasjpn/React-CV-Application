@@ -1,13 +1,26 @@
+import { useState } from "react";
 import "./App.css";
 import GeneralInfo from "./components/GeneralInfo";
+import Preview from "./components/Preview";
 
 function App() {
+  // useState für GeneralInfo
+  const [generalInfo, setGeneralInfo] = useState({
+    vorname: "",
+    nachname: "",
+    telefon: "",
+    email: "",
+    street: "",
+    postal: "",
+    city: "",
+  });
+
   return (
     <div className="App">
       <h1>CV Application</h1>
       <form>
         <section>
-          <GeneralInfo />
+          <GeneralInfo setGeneralInfo={setGeneralInfo} />
         </section>
         <section>
           <h2>Schulischer Abschluss</h2>
@@ -36,6 +49,7 @@ function App() {
         </section>
         <button type="submit">Absenden</button>
       </form>
+      <Preview generalInfo={generalInfo} />
     </div>
   );
 }

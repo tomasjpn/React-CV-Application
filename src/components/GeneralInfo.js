@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // Component für Allgemeine Informationen
-function GeneralInfo() {
+function GeneralInfo({ setGeneralInfo }) {
   // useStates für die Speicherung der Werten aus den Inputfeldern
   const [vorname, setVorname] = useState("");
   const [nachname, setNachname] = useState("");
@@ -10,6 +10,21 @@ function GeneralInfo() {
   const [street, setStreet] = useState("");
   const [postal, setPostal] = useState("");
   const [city, setCity] = useState("");
+
+  // useEffect führt jedesmal die setGeneralInfo Funktion aus, wenn einer der Werte aus den dependency Array verändert wird
+  useEffect(() => {
+    setGeneralInfo({
+      // Als Properties werden die Variablen aus den States übergeben
+      vorname,
+      nachname,
+      telefon,
+      email,
+      street,
+      postal,
+      city,
+    });
+    // Wenn einer dieser Variablen verändert wird, wird die Funktion setGeneralInfo aus App.js aufgerufen
+  }, [vorname, nachname, telefon, email, street, postal, city, setGeneralInfo]);
 
   return (
     <>
