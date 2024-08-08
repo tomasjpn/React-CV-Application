@@ -14,6 +14,30 @@ function GeneralInfo({ setGeneralInfo }) {
   // useState für Accordion
   const [accordionOpen, setAccordionOpen] = useState(false);
 
+  // useSate für Profilbild
+  const [image, setImage] = useState(
+    "https://st2.depositphotos.com/2101611/8308/v/950/depositphotos_83084390-stock-illustration-businessman-icon-can-be-used.jpg"
+  );
+
+  // Funktion um Bilddateien hochzuladen
+  function handleImageChange(event) {
+    const file = event.target.files[0]; // Erste Datei (Bild)
+
+    // Stellt sicher, dass eine Datei ausgewählt wurde
+    if (file) {
+      const reader = new FileReader(); // FileReader API -> ermöglicht Dateien von der Client-Seite zu lesen
+
+      // onloaded = Event-Handler, der aufgerufen wird, wenn das Lesen der Datei abgeschlossen ist
+      reader.onloadend = () => {
+        // image-Variable wird mit der Data-URL(reader.result) aktualisiert
+        setImage(reader.result);
+      };
+
+      // die übergebene Datei wird als eine Data-URL gelesen
+      reader.readAsDataURL(file);
+    }
+  }
+
   // Funktion zum Umschalten des Akkordeons
   function handleAccordion() {
     setAccordionOpen(!accordionOpen);
@@ -23,6 +47,7 @@ function GeneralInfo({ setGeneralInfo }) {
   useEffect(() => {
     setGeneralInfo({
       // Als Properties werden die Variablen aus den States übergeben
+      image,
       vorname,
       nachname,
       telefon,
@@ -32,7 +57,17 @@ function GeneralInfo({ setGeneralInfo }) {
       city,
     });
     // Wenn einer dieser Variablen verändert wird, wird die Funktion setGeneralInfo aus App.js aufgerufen
-  }, [vorname, nachname, telefon, email, street, postal, city, setGeneralInfo]);
+  }, [
+    image,
+    vorname,
+    nachname,
+    telefon,
+    email,
+    street,
+    postal,
+    city,
+    setGeneralInfo,
+  ]);
 
   return (
     <>
@@ -48,7 +83,7 @@ function GeneralInfo({ setGeneralInfo }) {
       {accordionOpen && (
         <div className="Name">
           <img
-            src="https://st2.depositphotos.com/2101611/8308/v/950/depositphotos_83084390-stock-illustration-businessman-icon-can-be-used.jpg"
+            src={image}
             style={{
               maxWidth: "100px",
               display: "block",
@@ -56,6 +91,7 @@ function GeneralInfo({ setGeneralInfo }) {
             }}
             alt="ProfilBild"
           />
+          <input type="file" accept="image/*" onChange={handleImageChange} />
           <input
             placeholder="Vorname"
             name="firstName"

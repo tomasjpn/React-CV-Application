@@ -6,6 +6,7 @@ import Preview from "./components/Preview";
 function App() {
   // useState für GeneralInfo
   const [generalInfo, setGeneralInfo] = useState({
+    image: "",
     vorname: "",
     nachname: "",
     telefon: "",
