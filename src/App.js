@@ -23,13 +23,16 @@ function App() {
     schooldegree: "",
   });
 
+  // State für JobInfos -> Initialisiert als leeres entries: Array
   const [jobInfo, setJobInfo] = useState({
-    companyName: "",
-    jobTitle: "",
-    workDateFrom: "",
-    workDateto: "",
-    jobDesc: "",
+    entries: [],
   });
+
+  function addJobEntry(newJob) {
+    setJobInfo((prev) => ({
+      entries: [...prev.entries, newJob],
+    }));
+  }
 
   return (
     <div className="App">
@@ -42,7 +45,7 @@ function App() {
           <SchoolInfo setSchoolInfo={setSchoolInfo} />
         </section>
         <section>
-          <WorkInfo setJobInfo={setJobInfo} />
+          <WorkInfo addJobEntry={addJobEntry} />
         </section>
         <button type="submit">Absenden</button>
       </form>

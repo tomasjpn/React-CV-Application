@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { jobList } from "../utils/jobsListe";
+import { v4 as uuidv4 } from "uuid";
 
-function WorkInfo({ setJobInfo }) {
+function WorkInfo({ addJobEntry }) {
   // useStates für die Speicherung der Werte aus den Inputfeldern
   const [companyName, setCompanyName] = useState("");
   const [jobTitle, setJobTitles] = useState("");
@@ -47,17 +48,31 @@ function WorkInfo({ setJobInfo }) {
     }
   }
 
-  // useEffect führt jedesmal die setGeneralInfo Funktion aus, wenn einer der Werte aus den dependency Array verändert wird
-  useEffect(() => {
-    // Als Properties werden die Variablen aus den States übergeben
-    setJobInfo({
-      companyName,
-      jobTitle,
-      workDateFrom,
-      workDateTo,
-      jobDesc,
-    }); // Wenn einer dieser Variablen verändert wird, wird die Funktion setJobInfo aus App.js aufgerufen
-  }, [companyName, jobTitle, workDateFrom, workDateTo, jobDesc, setJobInfo]);
+  // Funktion um einen Job Eintrag hinzuzufügen
+  function submitJobEntry() {
+    // Stellt sicher, dass Unternehmen`s Name, Titel sowie Zeitraum angegeben werden
+    if (companyName && jobTitle && workDateFrom && workDateTo) {
+      // Objekt das alle States speichert
+      const newJob = {
+        id: uuidv4(), // Generiert eine einzigartige ID
+        jobTitle,
+        companyName,
+        workDateFrom,
+        workDateTo,
+        jobDesc,
+      };
+      // das Objekt mit den gespeicherten Daten wird an die addJobEntry Funktion weitergegeben
+      addJobEntry(newJob);
+      // Inputfelder werden alle zurückgesetzt
+      setCompanyName("");
+      setJobTitles("");
+      setWorkDateFrom("");
+      setWorkDateTo("");
+      setJobDesc("");
+    } else {
+      alert("Bitte fülle alle Felder aus.");
+    }
+  }
 
   return (
     <>
@@ -82,6 +97,7 @@ function WorkInfo({ setJobInfo }) {
             ))}
             <option value="addNew">Mehr hinzufügen...</option>
           </select>
+          {/* Inputfeld, dass erst auftaucht, wenn man eine weitere JobKategorie hinzufügen will*/}
           {showNewCategoryInput && (
             <div>
               <input
@@ -122,7 +138,10 @@ function WorkInfo({ setJobInfo }) {
             value={jobDesc}
             placeholder="Beschreibung"
             onChange={(e) => setJobDesc(e.target.value)}
-          ></input>
+          />
+          <button type="button" onClick={submitJobEntry}>
+            +
+          </button>
         </div>
       )}
     </>

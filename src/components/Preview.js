@@ -19,11 +19,27 @@ function Preview({ generalInfo, schoolInfo, jobInfo }) {
         </p>
       </section>
       <section>
+        <h3>Bildungsabschluss</h3>
         <p>Name der Bildungsinstitution: {schoolInfo.schoolname}</p>
         <p>Abschluss: {schoolInfo.schooldegree}</p>
       </section>
       <section>
-        <p>Unternehmen: {jobInfo.companyName}</p>
+        <h3>Berufserfahrung</h3>
+        {/*Überprüft, ob Einträge vorhanden sind*/}
+        {jobInfo.entries.length === 0 ? (
+          <p>Keine Berufserfahrung angegeben.</p>
+        ) : (
+          jobInfo.entries.map((job) => (
+            <div key={job.id} className="job-entry">
+              <p>Beruf: {job.jobTitle}</p>
+              <p>Unternehmen: {job.companyName}</p>
+              <p>
+                Zeitraum: {job.workDateFrom} bis {job.workDateTo}
+              </p>
+              <p>Beschreibung: {job.jobDesc}</p>
+            </div>
+          ))
+        )}
       </section>
     </div>
   );
