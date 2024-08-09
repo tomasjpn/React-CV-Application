@@ -2,10 +2,7 @@ import React, { useState } from "react";
 
 // Funktion um die Einträge unter in den Formular für Berufserfahrung darzustellten und die Möglichkeit fürs Löschen oder Bearbeiten zu bekommen
 function WorkInfoEditPreview({ jobInfo, setJobInfo }) {
-  //useState um die Sichtbarkeit des inputFields für das Bearbeiten zu togglen
-  const [showJobEditInput, setJobWorkEditInput] = useState(false);
-
-  // IDs von den jeweiligen Job zu speichern
+  // IDs von den jeweiligen Job zu speichern -> null = aktuell wird kein Eintrag bearbeitet -> Wichtig für die Sichtbarkeit Toggle
   const [editingJobId, setEditingJobId] = useState(null);
 
   //useState um die neuen Werte zu speichern
@@ -25,23 +22,22 @@ function WorkInfoEditPreview({ jobInfo, setJobInfo }) {
     }));
   }
 
-  //Funktion für den InputField Sichtbarkeit toggle
-  function toggleInputEditEntry(id) {
-    setJobWorkEditInput(!showJobEditInput);
-    editEntry(id);
-    return;
-  }
-
+  // Funktion zur Bearbeitung eines Job Eintrags -> Wird aufgerufen wenn Bearbeiten Button betätitgt wird
   function editEntry(id) {
-    const jobToEdit = jobInfo.entries.find((entry) => entry.id === id);
+    const jobToEdit = jobInfo.entries.find((entry) => entry.id === id); // Findet den passenden Eintrag anhand der ID
     if (jobToEdit) {
-      setEditedJob(jobToEdit);
-      setEditingJobId(id);
-      setJobWorkEditInput(true); // Zeigt das Eingabefeld, wenn bearbeiten betätigt
+      setEditedJob(jobToEdit); // Aus der jobInfo Liste wird das Entry mit der passenden ID in setEditedJob => In den Inputfelder sind die alten Sachen, die man bearbeiten kann
+      setEditingJobId(id); // Sichtbarkeit der Inputfelder zu ermöglichen -> Bearbeitungsformular für Eintrag mit der entsprechenden ID wird angezeigt
     }
   }
 
-  // Funktion zum Aktualisieren eines bearbeiteten Job Eintrags
+  /*
+            ↓
+       nachdem editEntry aufgerufen wurde, werden die Inputfelder dargestellt, die in handleInputChange bearbeitet werden
+            ↓
+*/
+
+  // Funktion zum Aktualisieren eines bearbeiteten Job Eintrags -> Text im Eingabefeld wird hier bearbeitet
   function handleInputChange(e) {
     const { name, value } = e.target;
     setEditedJob((prevJob) => ({
@@ -51,13 +47,20 @@ function WorkInfoEditPreview({ jobInfo, setJobInfo }) {
   }
 
   // Funktion zum Speichern der Änderungen eines bearbeiteten Job Eintrags
-  function saveEdit() {
+  function confirmChanges(e) {
+    e.preventDefault();
     setJobInfo((prevJobInfo) => ({
       entries: prevJobInfo.entries.map((entry) =>
+        // Wenn die ID des ursprünglichen Eintrags mit der derzeitigen ID übereinstimmt, wird der alte Eintrag mit dem neuen Eintrag aus editedJob State aktualisisert
         entry.id === editingJobId ? editedJob : entry
       ),
     }));
-    setJobWorkEditInput(false); // Versteckt das Eingabefeld nach dem Speichern
+    setEditingJobId(null); // Versteckt das Eingabefeld nach dem Speichern
+  }
+
+  // Funktion zum Abbrechen des Bearbeitens
+  function cancelEdit() {
+    setEditingJobId(null); // Da Bearbeitungsfeld nur angezeigt wird, wenn eine ID vorhanden ist -> null=unsichtbar
   }
 
   return (
@@ -73,8 +76,8 @@ function WorkInfoEditPreview({ jobInfo, setJobInfo }) {
               Zeitraum: {job.workDateFrom} bis {job.workDateTo}
             </p>
             <p>Beschreibung: {job.jobDesc}</p>
-
-            {showJobEditInput && editingJobId === job.id && (
+            {/* wenn die editingJobId mit dem jobID übereinstimmt, werden die Inputfelder angezeigt*/}
+            {editingJobId === job.id ? (
               <div>
                 <input
                   name="jobTitle"
@@ -106,21 +109,29 @@ function WorkInfoEditPreview({ jobInfo, setJobInfo }) {
                   placeholder="Beschreibung"
                   onChange={handleInputChange}
                 />
-                <button onClick={saveEdit}>Speichern</button>
+                <button type="button" onClick={confirmChanges}>
+                  Bestätigen
+                </button>{" "}
+                <button type="button" onClick={cancelEdit}>
+                  Abbrechen
+                </button>{" "}
               </div>
+            ) : (
+              <>
+                <button
+                  className="deleteBtnEntry"
+                  onClick={() => deleteEntry(job.id)}
+                >
+                  Löschen
+                </button>
+                <button
+                  className="editBtnEntry"
+                  onClick={() => editEntry(job.id)}
+                >
+                  Bearbeiten
+                </button>
+              </>
             )}
-            <button
-              className="deleteBtnEntry"
-              onClick={() => deleteEntry(job.id)}
-            >
-              Löschen
-            </button>
-            <button
-              className="editBtnEntry"
-              onClick={() => toggleInputEditEntry(job.id)}
-            >
-              Bearbeiten
-            </button>
           </div>
         ))
       )}
