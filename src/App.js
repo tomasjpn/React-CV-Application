@@ -47,7 +47,9 @@ function App() {
         <section>
           <WorkInfo addJobEntry={addJobEntry} />
         </section>
-        <button type="submit">Absenden</button>
+        <button style={{ marginTop: "10px" }} type="submit">
+          Absenden
+        </button>
       </form>
       <Preview
         generalInfo={generalInfo}

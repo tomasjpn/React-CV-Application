@@ -60,11 +60,16 @@ function SchoolInfo({ setSchoolInfo }) {
         type="button"
         className="accordion-button"
         onClick={handleAccordionChange}
+        style={{
+          backgroundColor: accordionOpen ? "rgba(0, 0, 0, 0.445)" : "",
+          color: accordionOpen ? "white" : "black",
+        }}
       >
         Bildungsabschluss
       </button>
       {accordionOpen && (
         <div className="SchoolEd">
+          <label htmlFor="address">Name der Bildungsinstitution:</label>
           <input
             placeholder="Name der Bildungsinstitution"
             name="schoolName"

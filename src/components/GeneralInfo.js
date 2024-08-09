@@ -75,12 +75,16 @@ function GeneralInfo({ setGeneralInfo }) {
         type="button"
         className="accordion-button"
         onClick={handleAccordion}
+        style={{
+          backgroundColor: accordionOpen ? "rgba(0, 0, 0, 0.445)" : "",
+          color: accordionOpen ? "white" : "black",
+        }}
       >
         Allgemeine Informationen
       </button>
       {/*Accordion wenn der true ist, dann zeigt er den Inhalt an*/}
       {accordionOpen && (
-        <div className="Name">
+        <div className="NameInfo">
           <img
             src={image}
             style={{
@@ -90,7 +94,15 @@ function GeneralInfo({ setGeneralInfo }) {
             }}
             alt="ProfilBild"
           />
-          <input type="file" accept="image/*" onChange={handleImageChange} />
+          <label htmlFor="address">Foto:</label>
+          <input
+            className="fileButton"
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
+          />
+          <br />
+          <label htmlFor="address">Name:</label>
           <input
             placeholder="Vorname"
             name="firstName"
@@ -103,10 +115,8 @@ function GeneralInfo({ setGeneralInfo }) {
             value={nachname}
             onChange={(e) => setNachname(e.target.value)}
           />
-        </div>
-      )}
-      {accordionOpen && (
-        <div className="Kontakt">
+          <br />
+          <label htmlFor="address">Kontakt:</label>
           <input
             placeholder="Telefon"
             name="phone"
@@ -119,6 +129,7 @@ function GeneralInfo({ setGeneralInfo }) {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
+          <br />
           <label htmlFor="address">Adresse:</label>
           <input
             placeholder="Straße, Hausnr."

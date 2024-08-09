@@ -80,6 +80,10 @@ function WorkInfo({ addJobEntry }) {
         type="button"
         className="accordion-button"
         onClick={handleAccordionChange}
+        style={{
+          backgroundColor: accordionOpen ? "rgba(0, 0, 0, 0.445)" : "",
+          color: accordionOpen ? "white" : "black",
+        }}
       >
         Berufserfahrung
       </button>
@@ -117,6 +121,7 @@ function WorkInfo({ addJobEntry }) {
             value={companyName}
             onChange={(e) => setCompanyName(e.target.value)}
           />
+          <br />
           <label htmlFor="workDateFrom">von:</label>
           <input
             type="date"
@@ -133,6 +138,7 @@ function WorkInfo({ addJobEntry }) {
             value={workDateTo}
             onChange={(e) => setWorkDateTo(e.target.value)}
           />
+          <br />
           <input
             type="text"
             value={jobDesc}
