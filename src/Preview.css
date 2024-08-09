@@ -1,0 +1,92 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+.divBody {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.CVPreview {
+  margin-top: 20px;
+  border-radius: 15px;
+  position: relative;
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+  max-width: 1000px;
+  min-height: 1000px;
+  box-shadow: 2px 2px 59px rgba(128, 128, 128, 0.274);
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  overflow: hidden; /* Neu hinzugefügt */
+}
+
+.CVPreview .leftSide {
+  position: relative;
+  background-color: rgb(201, 83, 83);
+  padding: 40px;
+}
+
+.CVPreview .rightSide {
+  position: relative;
+  background-color: rgb(255, 255, 255);
+  padding: 40px;
+}
+
+.nameField {
+  font-weight: bold;
+  font-size: 100px;
+  text-align: left;
+  margin-bottom: 100px;
+}
+
+.image {
+  max-width: 200px;
+  display: block;
+  margin: 0 auto;
+  margin-top: 40px;
+  margin-bottom: 100px;
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.contactInfo {
+  color: azure;
+  font-weight: bold;
+  font-size: 16px;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.kontakt {
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+.schoolInfo {
+  margin-bottom: 30px;
+}
+
+.workExp {
+  margin-bottom: 30px;
+}
+
+.workExp h3 {
+  margin-bottom: 10px;
+}
+
+.schoolInfo h3 {
+  margin-bottom: 10px;
+}
+
+.rightSide section {
+  border-bottom: 2px solid #ffc8c8;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
