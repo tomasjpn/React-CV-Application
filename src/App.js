@@ -4,6 +4,7 @@ import GeneralInfo from "./components/GeneralInfo";
 import Preview from "./components/Preview";
 import SchoolInfo from "./components/SchoolInfo";
 import WorkInfo from "./components/WorkInfo";
+import WorkInfoEditPreview from "./components/WorkInfoEditPrev";
 
 function App() {
   // useState für GeneralInfo
@@ -45,7 +46,11 @@ function App() {
           <SchoolInfo setSchoolInfo={setSchoolInfo} />
         </section>
         <section>
-          <WorkInfo addJobEntry={addJobEntry} />
+          <WorkInfo
+            addJobEntry={addJobEntry}
+            jobInfo={jobInfo}
+            setJobInfo={setJobInfo}
+          />
         </section>
         <button style={{ marginTop: "10px" }} type="submit">
           Absenden
