@@ -36,5 +36,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "Solution for TheOdinProject: CV Application: https://www.theodinproject.com/lessons/node-path-react-new-cv-application",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC"
 }

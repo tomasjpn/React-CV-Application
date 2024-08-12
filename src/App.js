@@ -4,7 +4,6 @@ import GeneralInfo from "./components/GeneralInfo";
 import Preview from "./components/Preview";
 import SchoolInfo from "./components/SchoolInfo";
 import WorkInfo from "./components/WorkInfo";
-import WorkInfoEditPreview from "./components/WorkInfoEditPrev";
 
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
