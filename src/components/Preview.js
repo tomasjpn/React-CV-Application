@@ -4,7 +4,7 @@ function Preview({ generalInfo, schoolInfo, jobInfo }) {
   return (
     <div class="divBody">
       <div className="CVPreview">
-        <div class="leftSide">
+        <div className="leftSide">
           <div className="generalInfo">
             <img src={generalInfo.image} alt="Profilbild" className="image" />
             <div className="contactInfo">

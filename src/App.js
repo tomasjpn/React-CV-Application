@@ -41,6 +41,11 @@ function App() {
   function handleDownload() {
     const previewElement = document.querySelector(".CVPreview"); // Speichert das HTML Element mit der Klasse CVPreview
 
+    if (!previewElement) {
+      console.error("Element mit der Klasse CVPreview wurde nicht gefunden.");
+      return;
+    }
+
     // html2Canvas("HTML Element das in Bild umgewandelt werden muss", Bildscalierung)
     html2canvas(previewElement, { scale: 2 }).then((canvas) => {
       // Promise -> Wenn das Bild fertig ist, .then

@@ -1,7 +1,7 @@
 * {
   box-sizing: border-box;
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
 }
 
 .divBody {
@@ -21,8 +21,7 @@
   box-shadow: 2px 2px 40px rgba(128, 128, 128, 0.425);
   display: grid;
   grid-template-columns: 1fr 2fr;
-  overflow: hidden; /* Neu hinzugefügt */
-
+  overflow: auto;
   animation: slideUp 1.2s ease-out forwards;
 }
 
@@ -57,14 +56,12 @@
 }
 
 .image {
-  max-width: 200px;
   display: block;
-  margin: 0 auto;
-  margin-top: 40px;
-  margin-bottom: 100px;
+  margin: 40px auto 100px auto;
   border-radius: 50%;
-  width: 200px;
-  height: 200px;
+  width: 100%;
+  max-width: 200px;
+  height: auto;
   object-fit: cover;
 }
 
@@ -102,4 +99,75 @@
   border-bottom: 2px solid #ffc8c8;
   padding-bottom: 20px;
   margin-bottom: 20px;
+}
+
+
+@media only screen and (max-width: 1280px) {
+  .CVPreview {
+    grid-template-columns: 1fr 1.5fr;
+    padding: 15px;
+  }
+
+  .nameField {
+    font-size: 1.5rem;
+  }
+
+  .image {
+    max-width: 120px;
+  }
+
+  .contactInfo {
+    font-size: 0.875rem;
+  }
+
+  button {
+    font-size: 0.875rem;
+  }
+}
+
+@media only screen and (max-width: 730px) {
+  .CVPreview {
+    grid-template-columns: 1fr;
+    padding: 10px;
+  }
+
+  .nameField {
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+  }
+
+  .image {
+    max-width: 100px;
+  }
+
+  .contactInfo {
+    font-size: 0.75rem;
+  }
+
+  button {
+    font-size: 0.75rem;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .CVPreview {
+    padding: 5px;
+  }
+
+  .nameField {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+
+  .image {
+    max-width: 80px;
+  }
+
+  .contactInfo {
+    font-size: 0.625rem;
+  }
+
+  button {
+    font-size: 0.625rem;
+  }
 }

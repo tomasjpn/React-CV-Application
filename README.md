@@ -1,6 +1,6 @@
 Solution for TheOdinProject: CV Application: https://www.theodinproject.com/lessons/node-path-react-new-cv-application
 
-## Live-preview: https://66b9f4ce2c58d173f623cb36--sweet-syrniki-4dc655.netlify.app/
+## Live-preview: https://react-cv-application-tomas.vercel.app/
 
 ---
 

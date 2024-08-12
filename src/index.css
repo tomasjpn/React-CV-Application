@@ -149,3 +149,65 @@ select {
 #SubmitWorkInfo {
   background-color: rgba(255, 255, 255, 0.76);
 }
+
+@media only screen and (max-width: 1280px) {
+  .WorkExInputFeld,
+  .SchoolEd,
+  .NameInfo,
+  .JobEntryEditField {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+
+@media only screen and (max-width: 730px) {
+  .WorkExInputFeld,
+  .SchoolEd,
+  .NameInfo,
+  .JobEntryEditField {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .WorkExInputFeld,
+  .SchoolEd,
+  .NameInfo,
+  .JobEntryEditField {
+    margin-left: 2px;
+    margin-right: 2px;
+  }
+}
+
+.WorkExInputFeld,
+.SchoolEd,
+.NameInfo,
+.JobEntryEditField {
+  background-color: rgba(128, 128, 128, 0.178);
+  margin: 0 auto;
+  border-radius: 20px;
+  padding: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  max-width: 1000px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.JobEntryEdit {
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  margin: 20px 0;
+  padding: 15px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.deleteBtnEntry {
+  padding: 10px;
+  margin: 10px;
+}
+
+#SubmitWorkInfo {
+  background-color: rgba(255, 255, 255, 0.76);
+}
