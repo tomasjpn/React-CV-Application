@@ -43,11 +43,12 @@ function App() {
     const previewElement = document.querySelector(".CVPreview"); // Speichert das HTML Element mit der Klasse CVPreview
 
     // html2Canvas("HTML Element das in Bild umgewandelt werden muss", Bildscalierung)
-    html2canvas(previewElement, { scale: 2 }).then((canvas) => { // Promise -> Wenn das Bild fertig ist, .then
+    html2canvas(previewElement, { scale: 2 }).then((canvas) => {
+      // Promise -> Wenn das Bild fertig ist, .then
       const imgData = canvas.toDataURL("image/png"); // Canvas Element konvertiert in -> URL String
       const pdf = new jsPDF("p", "mm", "a4"); // erstellt neue PDF -> p = Portrait/Hochformat; mm = Millimeter; a4 = A4 Format
       const imgProps = pdf.getImageProperties(imgData); // Bild-Eigenschaften werden extrahieren wie: Höhe Breite usw. -> für die Skalierung der PDF
-      const pdfWidth = pdf.internal.pageSize.getWidth(); // Holt sich die Breite der PDF i Millimetern
+      const pdfWidth = pdf.internal.pageSize.getWidth(); // Holt sich die Breite der PDF in Millimetern
       const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width; // Höhe des Bildes wird berechnet um proportional zur Breite skalieren
 
       pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight); // fügt die imgData zur der PDF -> imgData = URL; PNG = Bildformat; 0,0 = X,Y Kooridnaten, wo das Bild anfangen sollte, in dem Fall die obere linke Ecke; pdfWidth,pdfHeight = oben berechnet
@@ -59,6 +60,7 @@ function App() {
     <div className="App">
       <h1>CV Application</h1>
       <form
+        className="submitCV"
         onSubmit={(e) => {
           e.preventDefault();
           handleDownload();

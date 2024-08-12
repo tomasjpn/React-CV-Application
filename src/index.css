@@ -50,6 +50,35 @@ select {
   padding: 20px;
   transition: background-color 0.3s ease, color 0.3s ease;
   box-sizing: border-box;
+
+  opacity: 0;
+  animation: FadeIn 0.8s ease forwards;
+}
+
+@keyframes FadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes FadeIn2 {
+  0% {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.submitCV {
+  animation: FadeIn 1s ease forwards;
 }
 
 .WorkExInputFeld {
@@ -116,7 +145,7 @@ select {
   padding: 10px;
   margin: 10px;
 }
- 
-#SubmitWorkInfo{
+
+#SubmitWorkInfo {
   background-color: rgba(255, 255, 255, 0.76);
 }

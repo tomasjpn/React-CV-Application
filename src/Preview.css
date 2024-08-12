@@ -18,10 +18,23 @@
   width: 100%;
   max-width: 1000px;
   min-height: 1000px;
-  box-shadow: 2px 2px 59px rgba(128, 128, 128, 0.274);
+  box-shadow: 2px 2px 40px rgba(128, 128, 128, 0.425);
   display: grid;
   grid-template-columns: 1fr 2fr;
   overflow: hidden; /* Neu hinzugefügt */
+
+  animation: slideUp 1.2s ease-out forwards;
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .CVPreview .leftSide {
