@@ -147,7 +147,7 @@ function WorkInfo({ addJobEntry, jobInfo, setJobInfo }) {
               placeholder="Beschreibung"
               onChange={(e) => setJobDesc(e.target.value)}
             />
-            <button type="button" onClick={submitJobEntry}>
+            <button id="SubmitWorkInfo" type="button" onClick={submitJobEntry}>
               +
             </button>
           </div>
