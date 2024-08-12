@@ -1,10 +1,13 @@
+# React-CV-Application
+---
+
 Solution for TheOdinProject: CV Application: https://www.theodinproject.com/lessons/node-path-react-new-cv-application
 
 ## Live-preview: https://react-cv-application-tomas.vercel.app/
 
 ---
 
-# Projekt-Dokumentation: React-CV-Application
+## Projekt-Dokumentation: React-CV-Application
 
 ## Inhaltsverzeichnis
 
@@ -140,8 +143,32 @@ Die Projektstruktur für die `React-CV-Application` ist wie folgt organisiert:
   }
   ```
 
+  ### CV-Daten Export
+
+- **`generatePDF`**: Erstellt ein PDF-Dokument des Lebenslaufs und ermöglicht das Herunterladen.
+  ```javascript
+  function generatePDF() {
+    html2canvas(document.querySelector("#cv")).then(canvas => {
+      const pdf = new jsPDF();
+      pdf.addImage(canvas.toDataURL("image/png"), 'PNG', 0, 0);
+      pdf.save("cv.pdf");
+    });
+  }
+  ```
+  - `html2canvas`: Konvertiert HTML zu Canvas.
+  - `jsPDF`: Erstellt das PDF-Dokument.
+
+- **`downloadCV`**: Bietet die Möglichkeit, den Lebenslauf in einem bestimmten Format herunterzuladen.
+  ```javascript
+  function downloadCV() {
+    // Code zum Download des Lebenslaufs
+  }
+  ```
+
 ## Verwendung
 
 1. **Allgemeine Informationen**: Ermöglicht Benutzern, persönliche Informationen wie Name, Kontaktinformationen und ein Profilbild einzugeben.
+
 2. **Bildung**: Ermöglicht Benutzern, Bildungsabschlüsse und Institutionen hinzuzufügen.
+
 3. **Berufserfahrung**: Ermöglicht Benutzern, ihre berufliche Erfahrung einschließlich der Positionen, Unternehmen und Zeiträume zu verwalten.

@@ -41,10 +41,9 @@ function App() {
   function handleDownload() {
     const previewElement = document.querySelector(".CVPreview"); // Speichert das HTML Element mit der Klasse CVPreview
 
-    if (!previewElement) {
-      console.error("Element mit der Klasse CVPreview wurde nicht gefunden.");
-      return;
-    }
+    // Animationen werden temporär ausgeschaltet für die PDF -> PDF kann nicht Animationen richtig rendern
+    previewElement.style.animation = "none";
+    previewElement.style.boxShadow = "none";
 
     // html2Canvas("HTML Element das in Bild umgewandelt werden muss", Bildscalierung)
     html2canvas(previewElement, { scale: 2 }).then((canvas) => {
@@ -57,6 +56,10 @@ function App() {
 
       pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight); // fügt die imgData zur der PDF -> imgData = URL; PNG = Bildformat; 0,0 = X,Y Kooridnaten, wo das Bild anfangen sollte, in dem Fall die obere linke Ecke; pdfWidth,pdfHeight = oben berechnet
       pdf.save("Lebenslauf.pdf"); // Speichert die PDF als Lebenslauf.pdf
+
+      // Animationen wieder einschalten
+      previewElement.style.animation = "";
+      previewElement.style.boxShadow = "";
     });
   }
 

@@ -63,6 +63,7 @@
   max-width: 200px;
   height: auto;
   object-fit: cover;
+   aspect-ratio: 1/1;
 }
 
 .contactInfo {
@@ -100,7 +101,6 @@
   padding-bottom: 20px;
   margin-bottom: 20px;
 }
-
 
 @media only screen and (max-width: 1280px) {
   .CVPreview {
